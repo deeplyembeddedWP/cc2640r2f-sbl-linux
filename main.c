@@ -58,8 +58,6 @@ int main(int argc, char **argv)
         break;
     }
 
-
-
     uint8_t *memPtr = NULL;         /* Ptr to hold read data */
     long fileSz = 0;                /* Holds the size of the .bin file, in bytes */
     uint32_t fileCrc, devCrc;       /* Variables to save CRC checksum */
@@ -147,6 +145,7 @@ int main(int argc, char **argv)
                 if((fileRd = fread(memPtr,1 , fileSz, fPtr)) != fileSz)
                 {
                     printf("ERROR: File read failed\n");
+                    free(memPtr);
                     closePort();
                     closeFile(fPtr);
                     exit(EXIT_FAILURE);
